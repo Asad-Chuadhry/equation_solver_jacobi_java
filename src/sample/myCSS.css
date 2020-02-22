@@ -1,0 +1,61 @@
+
+#solution{
+    -fx-background-color: #f4ffbb;
+    -fx-spacing: 10px;
+    -fx-pref-width: 675px;
+}
+#solution#eqlbl{
+    -fx-font-size: 18px;
+    -fx-spacing: 10px;
+    -fx-text-fill: #2422ff;
+    -fx-font-weight: bold;
+    -fx-pref-width: 250px;
+}
+#solution#msjlbl{
+    -fx-font-size: 18px;
+    -fx-spacing: 10px;
+    -fx-font-weight: bold;
+    -fx-pref-width: 650px;
+    -fx-padding: 0 0 0 10;
+}
+#solution#hboxlbl{
+    -fx-padding: 10px;
+    -fx-spacing: 20px;
+
+}
+#solution#hboxeq {
+    -fx-spacing: 20px;
+    -fx-padding:0px 0px 0px 10px;
+}
+#solution#hboxeq#lbl{
+    -fx-font-size: 18px;
+    -fx-spacing: 10px;
+    -fx-pref-width: 250px;
+}
+#solution#lblf{
+    -fx-font-size: 18px;
+    -fx-spacing: 10px;
+    -fx-pref-width: 650px;
+    -fx-padding: 0 0 0 20;
+    -fx-font-weight: bold;
+}
+#solution#lblit{
+    -fx-font-size: 18px;
+    -fx-spacing: 20px;
+    -fx-text-fill: #2422ff;
+    -fx-font-weight: bold;
+    -fx-pref-width: 650px;
+    -fx-background-color: #f4f8ff;
+    -fx-padding: 0 0 0 20;
+}
+.AnchorPane{
+ -fx-background-color: black;
+}
+#solution#lblvar{
+    -fx-font-size: 18px;
+    -fx-spacing: 10px;
+    -fx-pref-width: 650px;
+    -fx-padding: 0 0 0 20;
+}
+
+

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_jacobi" default="compile.module.jacobi">
+  <dirname property="module.jacobi.basedir" file="${ant.file.module_jacobi}"/>
+  
+  <property name="module.jdk.home.jacobi" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.jacobi" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.jacobi" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.jacobi" value="-encoding UTF-8 -source 11 -target 11 ${compiler.args}"/>
+  
+  <property name="jacobi.output.dir" value="${module.jacobi.basedir}/out/production/Jacobi"/>
+  <property name="jacobi.testoutput.dir" value="${module.jacobi.basedir}/out/test/Jacobi"/>
+  
+  <path id="jacobi.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="jacobi.module.production.classpath">
+    <path refid="${module.jdk.classpath.jacobi}"/>
+    <path refid="library.javafx-swt.classpath"/>
+  </path>
+  
+  <path id="jacobi.runtime.production.module.classpath">
+    <pathelement location="${jacobi.output.dir}"/>
+    <path refid="library.javafx-swt.classpath"/>
+  </path>
+  
+  <path id="jacobi.module.classpath">
+    <path refid="${module.jdk.classpath.jacobi}"/>
+    <pathelement location="${jacobi.output.dir}"/>
+    <path refid="library.javafx-swt.classpath"/>
+  </path>
+  
+  <path id="jacobi.runtime.module.classpath">
+    <pathelement location="${jacobi.testoutput.dir}"/>
+    <pathelement location="${jacobi.output.dir}"/>
+    <path refid="library.javafx-swt.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.jacobi">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.jacobi">
+    <patternset refid="excluded.from.module.jacobi"/>
+  </patternset>
+  
+  <path id="jacobi.module.sourcepath">
+    <dirset dir="${module.jacobi.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.jacobi" depends="compile.module.jacobi.production,compile.module.jacobi.tests" description="Compile module Jacobi"/>
+  
+  <target name="compile.module.jacobi.production" depends="register.custom.compilers" description="Compile module Jacobi; production classes">
+    <mkdir dir="${jacobi.output.dir}"/>
+    <javac2 destdir="${jacobi.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.jacobi}/javac">
+      <compilerarg line="${compiler.args.jacobi}"/>
+      <bootclasspath refid="jacobi.module.bootclasspath"/>
+      <classpath refid="jacobi.module.production.classpath"/>
+      <src refid="jacobi.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.jacobi"/>
+    </javac2>
+    
+    <copy todir="${jacobi.output.dir}">
+      <fileset dir="${module.jacobi.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.jacobi.tests" depends="register.custom.compilers,compile.module.jacobi.production" description="compile module Jacobi; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.jacobi" description="cleanup module">
+    <delete dir="${jacobi.output.dir}"/>
+    <delete dir="${jacobi.testoutput.dir}"/>
+  </target>
+</project>
